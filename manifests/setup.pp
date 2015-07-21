@@ -13,7 +13,7 @@ class syncthing::setup {
                     }
                     exec {"syncthing_apt_update":
                         path => [ "/bin", "/usr/bin", "/usr/local/bin" ],
-                        command => "sudo apt-get update",
+                        command => "apt-get -y update",
                     }
                     package {"syncthing":
                         ensure => 'installed',
