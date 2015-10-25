@@ -1,8 +1,8 @@
-define syncthing_user_start($username=$id){
+define syncthing_user_upstart($username=$id){
   $home = "home_$username"
   $home_path = inline_template("<%= scope.lookupvar('::$home') %>")
-  $conf_path = "$home_path/.config/syncthing.conf"
-  notify{"Syncthing conf_path: $conf_path":}
+  $conf_path = "$home_path/.config/upstart/syncthing.conf"
+  notify{"Syncthing upstart config path: $conf_path":}
   file{"$conf_path":
     mode    => '0755',
     content => template('syncthing/syncthing.conf.erb'),
@@ -22,7 +22,7 @@ class syncthing::start{
     'precise': {
     }
     'trusty': {
-	syncthing_user_start{'syncthing_user_start_rsc': }
+	syncthing_user_upstart{'syncthing_user_upstart_rsc': }
     }
     }
   }
